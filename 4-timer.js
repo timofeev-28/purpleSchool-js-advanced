@@ -9,8 +9,14 @@ const getTimerBeforeNewYear = () => {
         return num < 10 ? '0' + num : num;
     }
 
-    setInterval(() => {
+    const setId = setInterval(() => {
         let diff = timeHappyNY - Date.now();
+        if (diff <= 1000) {
+            timer.textContent = `C Новым ${new Date().getFullYear()} Годом!`;
+            clearInterval(setId);
+            return;
+        }
+
         const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30) % 12);
         const days = Math.floor(diff / (1000 * 60 * 60 * 24) % 30);
         const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -26,4 +32,4 @@ const getTimerBeforeNewYear = () => {
     }, 1000);
 }
 
-console.log(getTimerBeforeNewYear());
+getTimerBeforeNewYear();

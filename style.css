@@ -4,6 +4,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 28px;
     font-weight: 500;
+    background-color: rgba(178, 180, 176, 0.842);
 }
 
 .container {
