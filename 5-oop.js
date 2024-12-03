@@ -35,23 +35,23 @@ Elf.prototype.createSpell = function() {
 //--------------------
 
 
-let orc1 = new Orc('rus', 'ivan', 'russian', 'axe');
-let orc2 = new Orc('fin', 'yussi', 'finnish', 'spear');
+let orcInstance1 = new Orc('rus', 'ivan', 'russian', 'axe');
+let orcInstance2 = new Orc('fin', 'yussi', 'finnish', 'spear');
 
-let elf1 = new Elf('rus', 'ivan', 'russian', 'ice');
-let elf2 = new Elf('fin', 'yussi', 'finnish', 'fire');
+let elfInstance1 = new Elf('rus', 'ivan', 'russian', 'ice');
+let elfInstance2 = new Elf('fin', 'yussi', 'finnish', 'fire');
 
 // -- вывод в консоль --
-console.log(orc1);
-console.log(orc2);
-orc1.speak();
-orc1.kick();
-orc2.speak();
-orc2.kick();
+console.log(orcInstance1);
+console.log(orcInstance2);
+orcInstance1.speak();
+orcInstance1.kick();
+orcInstance2.speak();
+orcInstance2.kick();
 
-console.log(elf1);
-console.log(elf2);
-elf1.speak();
-elf1.createSpell();
-elf2.speak();
-elf2.createSpell();
+console.log(elfInstance1);
+console.log(elfInstance2);
+elfInstance1.speak();
+elfInstance1.createSpell();
+elfInstance2.speak();
+elfInstance2.createSpell();
