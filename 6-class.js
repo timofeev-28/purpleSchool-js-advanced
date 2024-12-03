@@ -16,9 +16,8 @@ class Car {
   }
 
   set #run(value) {
-    value = Number(value);
     if (!Number.isInteger(value) || value <= 0) {
-      console.log('Пробег должен состоять из цифр и быть положительным');
+      console.log('Значение пробега должно быть целым и положительным');
       this.#_run = 'данные не введены';
       return;
     }
@@ -26,9 +25,8 @@ class Car {
   }
 
   set changeRun(value) {
-    value = Number(value);
     if (this.#run > value) {
-      console.log('Пробег должен быть не меньше предыдущего значения');
+      console.log('Пробег должен быть не менее предыдущего значения');
       return;
     }
     this.#_run = value;
@@ -40,7 +38,7 @@ class Car {
 }
 //----------------------------------------------
 
-const newCar1 = new Car('Geely', 'Tugella', '280');
+const newCar1 = new Car('Geely', 'Tugella', 280);
 console.log(newCar1);
 newCar1.info();
 
@@ -48,6 +46,6 @@ newCar1.changeRun = 40;
 console.log(newCar1);
 newCar1.info();
 
-newCar1.changeRun = '540';
+newCar1.changeRun = 540;
 console.log(newCar1);
 newCar1.info();
