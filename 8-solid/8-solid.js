@@ -15,22 +15,14 @@ class FixedBilling extends Billing {}
 class HourBilling extends Billing {
     constructor(amount, hours) {
         super(amount);
-        this.hours = hours;
-    }
-
-    calculateTotal() {
-        return this.amount * this.hours;
+        this.amount = amount * hours;
     }
 }
 
 class ItemBilling extends Billing {
-    constructor(amount, element) {
+    constructor(amount, elements) {
         super(amount);
-        this.element = element;
-    }
-
-    calculateTotal() {
-        return this.amount * this.element;
+        this.amount = amount * elements;
     }
 }
 
@@ -41,5 +33,3 @@ const itemBillingInstance = new ItemBilling(500, 25);
 console.log(fixedBillingInstance.calculateTotal());
 console.log(hourBillingInstance.calculateTotal());
 console.log(itemBillingInstance.calculateTotal());
-
-
