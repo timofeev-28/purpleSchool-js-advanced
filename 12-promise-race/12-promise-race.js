@@ -1,51 +1,42 @@
 'use strict';
 
-// Вариант 1
+// ВАРИАНТ 1
 
-function getPromise(num, delay) {
-    return new Promise((resolve) => {
-        const timeStart = Date.now();
-
-        setTimeout(() => {
-            resolve({numberPromise: `${num}`, leadTime: `${Date.now() - timeStart}`});
-        }, delay);
-    });
+function getPromise1(delay) {
+    return new Promise((resolve) => setTimeout(() => resolve(`Самый быстрый промис: ${delay} ms`), delay));
 }
 
-async function race1() {
-    try {
-        const data = await Promise.allSettled([
-            getPromise('1', 400),
-            getPromise('2', 200),
-            getPromise('3', 100)
-        ]);
-        data.sort((a, b) => a.value.leadTime - b.value.leadTime);
-        console.log(`Cамый быстрый запрос номер: ${data[0].value.numberPromise}, результат: ${data[0].status}`);
-    } catch(e) {
-        console.error(e);
-    }
+function race(arrPromises) {
+  return new Promise((resolve, reject) => {
+    arrPromises.forEach(promise => promise.then(resolve).catch(reject));
+  })
 }
 
-race1();
-// -------------------
+race([getPromise1(400), getPromise1(300), getPromise1(100)])
+  .then(console.log)
+  .catch(err => console.log('Ошибка', err))
 
+  // ----------------------------
 
-// Вариант 2
+// ВАРИАНТ 2
 
-const arrPromises = [
-    getPromise('1', 130),
-    getPromise('2', 120),
-    getPromise('3', 110)
-];
-
-async function race2(promises) {
-    try {
-        const data = await Promise.allSettled(promises);
-        data.sort((a, b) => a.value.leadTime - b.value.leadTime);
-        console.log(`Cамый быстрый запрос номер: ${data[0].value.numberPromise}, результат: ${data[0].status}`);
-    } catch(e) {
-        console.error(e);
-    }
+function getPromise2() {
+    return fetch('https://uselessfacts.jsph.pl/api/v2/facts/random')
+            .then(response => {
+              if (!response.ok) {
+                throw new Error(err);
+              }
+              return response.json()
+            })
+            .then(res => res.text);
 }
 
-race2(arrPromises);
+function race1(arrPromises) {
+  return new Promise((resolve, reject) => {
+    arrPromises.forEach(promise => promise.then(resolve).catch(reject));
+  })
+}
+
+race1([getPromise2(), getPromise2(), getPromise2()])
+  .then(console.log)
+  .catch(err => console.error(err));
